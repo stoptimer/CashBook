@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="IService\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CashBook.Domain\CashBook.Domain.csproj" />
+    <ProjectReference Include="..\CaskBook.Infrastructure\CaskBook.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

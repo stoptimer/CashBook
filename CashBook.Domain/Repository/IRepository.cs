@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 namespace CashBook.Domain.Repository
 {
     public interface IRepository<T> where T : class
     {
-        int Save(T entity);
-        T GetById(int id);
-        bool Delete(T entity);
+        ValueTask<int> SaveAsync(T entity);
+        ValueTask<T> GetByIdAsync(int id);
+        ValueTask<bool> DeleteAsync(T entity);
     }
 }
