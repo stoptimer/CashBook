@@ -10,9 +10,8 @@ using MySql.Data.MySqlClient;
 
 namespace CaskBook.Infrastructure.Repository
 {
-    public class BalanceRepository:IRepository<Balance>
+    public class BalanceRepository : IRepository<Balance>
     {
-        private readonly IDbConnection _dbConnection;
         private readonly IOptions<DbOption> _option;
         public BalanceRepository(IOptions<DbOption> option)
         {
@@ -21,10 +20,10 @@ namespace CaskBook.Infrastructure.Repository
 
         public async Task<bool> DeleteAsync(Balance entity)
         {
-            using (var db = new MySqlConnection(_option.Value.ConnectionStr))
+            using (var db = new MySqlConnection(_option.Value.ConnectionString))
             {
                 db.Open();
-               var res= await db.ExecuteAsync("delete from ");
+                var res = await db.ExecuteAsync("delete from ");
                 if (res > 0)
                     return true;
                 else
@@ -34,16 +33,21 @@ namespace CaskBook.Infrastructure.Repository
 
         public async Task<Balance> GetByIdAsync(int id)
         {
-            using(var db = new MySqlConnection(_option.Value.ConnectionStr))
+            using (var db = new MySqlConnection(_option.Value.ConnectionString))
             {
                 db.Open();
                 return await db.QueryFirstAsync<Balance>("select * from Balance where Id =@Id", new { Id = id });
             }
         }
 
-        public Task<int> SaveAsync(Balance entity)
+        public async Task<int> SaveAsync(Balance entity)
         {
-            throw new NotImplementedException();
+            string commandText = DapperExtensions.InsertQuery(typeof(Balance).Name, entity);
+            using (var db = new MySqlConnection(_option.Value.ConnectionString))
+            {
+                db.Open();
+                return await db.ExecuteScalarAsync<int>(commandText, entity, null);
+            }
         }
     }
 }
