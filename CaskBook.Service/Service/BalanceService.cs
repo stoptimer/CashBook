@@ -14,7 +14,7 @@ namespace CaskBook.Service.Service
             _balanceRepository = balanceRepository;
         }
 
-        public async ValueTask<Balance> GetBalanceById(int id)
+        public async Task<Balance> GetBalanceById(int id)
         {
             return await _balanceRepository.GetByIdAsync(id);
         }

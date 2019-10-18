@@ -6,6 +6,6 @@ namespace CaskBook.Service.IService
 {
     public interface IBalanceService
     {
-        ValueTask<Balance> GetBalanceById(int id);
+        Task<Balance> GetBalanceById(int id);
     }
 }

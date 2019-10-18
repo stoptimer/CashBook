@@ -19,7 +19,7 @@ namespace CaskBook.Infrastructure.Repository
             _option = option;
         }
 
-        public async ValueTask<bool> DeleteAsync(Balance entity)
+        public async Task<bool> DeleteAsync(Balance entity)
         {
             using (var db = new MySqlConnection(_option.Value.ConnectionStr))
             {
@@ -32,7 +32,7 @@ namespace CaskBook.Infrastructure.Repository
             }
         }
 
-        public async ValueTask<Balance> GetByIdAsync(int id)
+        public async Task<Balance> GetByIdAsync(int id)
         {
             using(var db = new MySqlConnection(_option.Value.ConnectionStr))
             {
@@ -41,7 +41,7 @@ namespace CaskBook.Infrastructure.Repository
             }
         }
 
-        public ValueTask<int> SaveAsync(Balance entity)
+        public Task<int> SaveAsync(Balance entity)
         {
             throw new NotImplementedException();
         }
