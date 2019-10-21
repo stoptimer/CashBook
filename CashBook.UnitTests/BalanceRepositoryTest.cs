@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CashBook.Domain.Entity;
 using CashBook.Domain.Repository;
@@ -13,10 +15,12 @@ namespace CashBook.UnitTests
     public class BalanceRepositoryTest
     {
         private readonly Mock<IRepository<Balance>> _balanceRepository;
+        private readonly Mock<IExpenseRecordRepository> _expenseRecordRepository;
         private IBalanceService _balanceService;
         public BalanceRepositoryTest()
         {
             _balanceRepository = new Mock<IRepository<Balance>>();
+            _expenseRecordRepository = new Mock<IExpenseRecordRepository>();
         }
         [Fact]
         public async Task Get_Balance_By_UserId_ReturnBalance()
@@ -25,10 +29,28 @@ namespace CashBook.UnitTests
             var balance = GetFakeBalance(1, 299, 1);
             _balanceRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).Returns(Task.FromResult(balance));
 
-            _balanceService = new BalanceService(_balanceRepository.Object);
+            _balanceService = new BalanceService(_balanceRepository.Object, _expenseRecordRepository.Object);
             var actual = await _balanceService.GetBalanceById(expected.Id);
             Assert.Equal(expected.Id, actual.Id);
             Assert.Equal(expected.TotalBalance, actual.TotalBalance);
+        }
+        [Fact]
+        public async Task Get_ExpenseRecord_By_TimeRange_ReturnExpenseRecords()
+        {
+            //var expected = new List<ExpenseRecord>();
+            //expected.Add(GetFakeExpenseRecord(1, 200, 1, DateTime.Parse("2019-10-19")));
+            //expected.Add(GetFakeExpenseRecord(2, 100, 1, DateTime.Parse("2019-10-18")));
+            //expected.Add(GetFakeExpenseRecord(3, 500, 1, DateTime.Parse("2019-10-17")));
+
+            var expenseRecords = new List<ExpenseRecord>();
+            expenseRecords.Add(GetFakeExpenseRecord(1,200,1,DateTime.Parse("2019-10-19")));
+            expenseRecords.Add(GetFakeExpenseRecord(2, 100, 1, DateTime.Parse("2019-10-18")));
+            expenseRecords.Add(GetFakeExpenseRecord(3, 500, 1, DateTime.Parse("2019-10-17")));
+            _expenseRecordRepository.Setup(x => x.GetExpenseRecordsByRangeTime(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(Task.FromResult(expenseRecords.AsEnumerable()));
+            _balanceService = new BalanceService(_balanceRepository.Object, _expenseRecordRepository.Object);
+            var actual = await _balanceService.GetExpenseRecordsByRangeTime(DateTime.Parse("2019-10-01"),DateTime.Parse("2019-10-10"));
+            Assert.NotNull(actual);
+            Assert.All(actual, x => Assert.Equal(1, x.UserId));
         }
 
         private Balance GetFakeBalance(int id, decimal totalBalance, int userId)
@@ -38,6 +60,17 @@ namespace CashBook.UnitTests
                 Id = id,
                 TotalBalance = totalBalance,
                 UserId = userId
+            };
+        }
+
+        private ExpenseRecord GetFakeExpenseRecord(int id, decimal expenseAmount, int userId,DateTime expenseTime)
+        {
+            return new ExpenseRecord()
+            {
+                Id = id,
+                Amount = expenseAmount,
+                UserId = userId,
+                ExpenseTime= expenseTime
             };
         }
     }

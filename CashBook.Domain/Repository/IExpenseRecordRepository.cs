@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CashBook.Domain.Entity;
 
-namespace CaskBook.Service.IService
+namespace CashBook.Domain.Repository
 {
-    public interface IBalanceService
+    public interface IExpenseRecordRepository:IRepository<ExpenseRecord>
     {
-        Task<Balance> GetBalanceById(int id);
         Task<IEnumerable<ExpenseRecord>> GetExpenseRecordsByRangeTime(DateTime start, DateTime end);
     }
 }
