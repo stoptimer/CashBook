@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CaskBook.Infrastructure.Options;
+using CaskBook.Service.IService;
+using CaskBook.Service.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,7 @@ namespace CashBook.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<DbOption>("mysqlconection", Configuration.GetSection("MySqlDbOpion"));
+            services.AddTransient<IBalanceService, BalanceService>();
             services.AddControllers();
         }
 
