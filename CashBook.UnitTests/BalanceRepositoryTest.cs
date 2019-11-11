@@ -37,22 +37,25 @@ namespace CashBook.UnitTests
         [Fact]
         public async Task Get_ExpenseRecord_By_TimeRange_ReturnExpenseRecords()
         {
-            //var expected = new List<ExpenseRecord>();
-            //expected.Add(GetFakeExpenseRecord(1, 200, 1, DateTime.Parse("2019-10-19")));
-            //expected.Add(GetFakeExpenseRecord(2, 100, 1, DateTime.Parse("2019-10-18")));
-            //expected.Add(GetFakeExpenseRecord(3, 500, 1, DateTime.Parse("2019-10-17")));
-
             var expenseRecords = new List<ExpenseRecord>();
-            expenseRecords.Add(GetFakeExpenseRecord(1,200,1,DateTime.Parse("2019-10-19")));
+            expenseRecords.Add(GetFakeExpenseRecord(1, 200, 1, DateTime.Parse("2019-10-19")));
             expenseRecords.Add(GetFakeExpenseRecord(2, 100, 1, DateTime.Parse("2019-10-18")));
             expenseRecords.Add(GetFakeExpenseRecord(3, 500, 1, DateTime.Parse("2019-10-17")));
             _expenseRecordRepository.Setup(x => x.GetExpenseRecordsByRangeTime(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(Task.FromResult(expenseRecords.AsEnumerable()));
             _balanceService = new BalanceService(_balanceRepository.Object, _expenseRecordRepository.Object);
-            var actual = await _balanceService.GetExpenseRecordsByRangeTime(DateTime.Parse("2019-10-01"),DateTime.Parse("2019-10-10"));
+            var actual = await _balanceService.GetExpenseRecordsByRangeTime(DateTime.Parse("2019-10-01"), DateTime.Parse("2019-10-10"));
             Assert.NotNull(actual);
             Assert.All(actual, x => Assert.Equal(1, x.UserId));
         }
-
+        [Fact]
+        public async Task Insert_ExpenseRecord()
+        {
+            var expenseRecord = new ExpenseRecord() {  Amount = 100, Deleted = 0, ExpenseTime = DateTime.Parse("2019-11-10"), UserId = 1 };
+            _expenseRecordRepository.Setup(x => x.SaveAsync(It.IsAny<ExpenseRecord>())).Returns(Task.FromResult(1));
+            _balanceService = new BalanceService(_balanceRepository.Object, _expenseRecordRepository.Object);
+            var actual = await _balanceService.InsertExpenseRecord(expenseRecord);
+            Assert.True(actual);
+        }
         private Balance GetFakeBalance(int id, decimal totalBalance, int userId)
         {
             return new Balance()
@@ -63,14 +66,14 @@ namespace CashBook.UnitTests
             };
         }
 
-        private ExpenseRecord GetFakeExpenseRecord(int id, decimal expenseAmount, int userId,DateTime expenseTime)
+        private ExpenseRecord GetFakeExpenseRecord(int id, decimal expenseAmount, int userId, DateTime expenseTime)
         {
             return new ExpenseRecord()
             {
                 Id = id,
                 Amount = expenseAmount,
                 UserId = userId,
-                ExpenseTime= expenseTime
+                ExpenseTime = expenseTime
             };
         }
     }

@@ -9,5 +9,7 @@ namespace CaskBook.Service.IService
     {
         Task<Balance> GetBalanceById(int id);
         Task<IEnumerable<ExpenseRecord>> GetExpenseRecordsByRangeTime(DateTime start, DateTime end);
+        Task<bool> InsertExpenseRecord(ExpenseRecord expenseRecord);
+
     }
 }

@@ -25,5 +25,17 @@ namespace CaskBook.Service.Service
         {
             return await _expenseRecordRepository.GetExpenseRecordsByRangeTime(start, end);
         }
+        public async Task<bool> InsertExpenseRecord(ExpenseRecord expenseRecord)
+        {
+            var result = await _expenseRecordRepository.SaveAsync(expenseRecord);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

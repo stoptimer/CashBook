@@ -1,6 +1,9 @@
 ﻿using System;
 namespace CashBook.Domain.Entity
 {
+    /// <summary>
+    /// 费用记录
+    /// </summary>
     public class ExpenseRecord
     {
         public ExpenseRecord()
