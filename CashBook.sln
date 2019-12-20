@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaskBook.Service", "CaskBoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashBook.API", "CashBook.API\CashBook.API.csproj", "{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.UnitTests", "CashBook.UnitTests\CashBook.UnitTests.csproj", "{A6340F27-D9AB-4658-9D0E-0337D402CDCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6340F27-D9AB-4658-9D0E-0337D402CDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6340F27-D9AB-4658-9D0E-0337D402CDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6340F27-D9AB-4658-9D0E-0337D402CDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6340F27-D9AB-4658-9D0E-0337D402CDCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

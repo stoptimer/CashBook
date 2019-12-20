@@ -50,7 +50,7 @@ namespace CashBook.UnitTests
         [Fact]
         public async Task Insert_ExpenseRecord()
         {
-            var expenseRecord = new ExpenseRecord() {  Amount = 100, Deleted = 0, ExpenseTime = DateTime.Parse("2019-11-10"), UserId = 1 };
+            var expenseRecord = new ExpenseRecord() { Amount = 100, Deleted = 0, ExpenseTime = DateTime.Parse("2019-11-10"), UserId = 1 };
             _expenseRecordRepository.Setup(x => x.SaveAsync(It.IsAny<ExpenseRecord>())).Returns(Task.FromResult(1));
             _balanceService = new BalanceService(_balanceRepository.Object, _expenseRecordRepository.Object);
             var actual = await _balanceService.InsertExpenseRecord(expenseRecord);
