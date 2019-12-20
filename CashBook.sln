@@ -1,15 +1,14 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.UnitTests", "CashBook.UnitTests\CashBook.UnitTests.csproj", "{12137FCB-34AA-4CFB-91E2-6A6E4E2DA84F}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashBook.Domain", "CashBook.Domain\CashBook.Domain.csproj", "{DDABDDF2-7553-4D62-B275-0BA68F9FFB71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.Domain", "CashBook.Domain\CashBook.Domain.csproj", "{DDABDDF2-7553-4D62-B275-0BA68F9FFB71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaskBook.Infrastructure", "CaskBook.Infrastructure\CaskBook.Infrastructure.csproj", "{802FDCE2-59C5-4D2F-98DB-D63276104E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaskBook.Infrastructure", "CaskBook.Infrastructure\CaskBook.Infrastructure.csproj", "{802FDCE2-59C5-4D2F-98DB-D63276104E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaskBook.Service", "CaskBook.Service\CaskBook.Service.csproj", "{8F49D268-2839-4C48-9CCA-271DBB292C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaskBook.Service", "CaskBook.Service\CaskBook.Service.csproj", "{8F49D268-2839-4C48-9CCA-271DBB292C9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashBook.API", "CashBook.API\CashBook.API.csproj", "{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashBook.API", "CashBook.API\CashBook.API.csproj", "{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +16,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12137FCB-34AA-4CFB-91E2-6A6E4E2DA84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12137FCB-34AA-4CFB-91E2-6A6E4E2DA84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12137FCB-34AA-4CFB-91E2-6A6E4E2DA84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12137FCB-34AA-4CFB-91E2-6A6E4E2DA84F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDABDDF2-7553-4D62-B275-0BA68F9FFB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDABDDF2-7553-4D62-B275-0BA68F9FFB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDABDDF2-7553-4D62-B275-0BA68F9FFB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,5 +32,11 @@ Global
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6505914A-6EEC-40D1-B81E-77CDAFA5C7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC10624D-2984-4DAD-AE43-6597A5908A02}
 	EndGlobalSection
 EndGlobal
